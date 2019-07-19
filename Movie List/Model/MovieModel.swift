@@ -12,4 +12,9 @@ struct Movie {
     let name: String
     var seen: Bool
     
+    init(name: String) {
+        self.name = name
+        self.seen = false
+    }
+    
 }

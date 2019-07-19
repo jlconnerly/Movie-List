@@ -23,6 +23,7 @@ class MovieTableViewCell: UITableViewCell {
         }
         
     }
+    
 
     //
     // MARK: - IBActions & Methods
@@ -33,21 +34,15 @@ class MovieTableViewCell: UITableViewCell {
         
         movieTitleLabel.text = movie.name
         
-        if let seenTitleLabel = seenButton.titleLabel  {
-            if movie.seen == true {
-                seenTitleLabel.text = "Seen"
-            }else if movie.seen == false {
-                seenTitleLabel.text = "Unseen"
-            }
+        if movie.seen == true {
+            seenButton.setTitle("Seen", for: .normal)
+        }else {
+            seenButton.setTitle("Unseen", for: .normal)
         }
 
     }
     
     @IBAction func seenButtonTapped(_ sender: UIButton) {
         movie?.seen.toggle()
-
-
     }
-    
-    
 }
