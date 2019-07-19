@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Movie {
+struct Movie: Codable {
     let name: String
     var seen: Bool
     

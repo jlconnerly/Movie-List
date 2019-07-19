@@ -76,12 +76,12 @@
                     <navigationItem key="navigationItem" title="Movie List" id="8Ka-h1-RWl">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="u8Q-S3-dPE">
                             <connections>
-                                <action selector="addMovieButtonTapped:" destination="jem-wu-EyV" id="87Q-Sq-Z8w"/>
                                 <segue destination="HUM-SM-atO" kind="presentation" identifier="AddMovieSegue" id="ahh-CB-sCa"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="u8Q-S3-dPE" id="sfx-Nt-VmN"/>
                         <outlet property="tableView" destination="zS3-60-IFO" id="ZRp-D3-zOv"/>
                     </connections>
                 </viewController>

@@ -15,8 +15,10 @@ class MovieListViewController: UIViewController {
     //
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
-    var movieList: [Movie] = []
+    let movieController = MovieController()
+    //var movieList: [Movie] = []
     
     //
     // MARK: - View Lifecycle
@@ -31,8 +33,8 @@ class MovieListViewController: UIViewController {
     // IBActions & Methods
     //
 
-    @IBAction func addMovieButtonTapped(_ sender: UIBarButtonItem) {
-    }
+
+
     
     
     //
@@ -52,14 +54,14 @@ class MovieListViewController: UIViewController {
 
 extension MovieListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieList.count
+        return movieController.movieList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MovieCell", for: indexPath) as? MovieTableViewCell else{ return UITableViewCell() }
         
-        let movie = movieList[indexPath.row]
+        let movie = movieController.movieList[indexPath.row]
         cell.movie = movie
         
         return cell
@@ -67,9 +69,9 @@ extension MovieListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            movieList.remove(at: indexPath.row)
+            movieController.movieList.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        }
+        } 
     }
 }
 
@@ -79,7 +81,8 @@ extension MovieListViewController: UITableViewDelegate {
 
 extension MovieListViewController: AddMovieDelegate {
     func movieWasCreated(_ movie: Movie) {
-        movieList.append(movie)
+        movieController.movieList.append(movie)
+        movieController.saveToPersistantStore()
         dismiss(animated: true, completion: nil)
         tableView.reloadData()
     }
